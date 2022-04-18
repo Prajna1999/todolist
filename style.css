@@ -48,18 +48,23 @@ body{
 .task-input input::placeholder{
     color: #bfbfbb;
 }
-.controls{
-    padding: 18px 25px;
-    border-bottom: 1px solid #bfbfbb;
+.controls, li{
     display: flex;
     justify-content: space-between;
     align-items: center;
 
 }
+.controls
+{
+    padding: 18px 25px;
+    border-bottom: 1px solid #bfbfbb;
+   
+}
 .filters span{
     margin: 0 8px;
     font-size: 17px;
     color: #444444;
+    cursor: pointer;
     
 }
 
@@ -75,6 +80,69 @@ body{
     border: none;
     /* opacity: 0.6; */
     cursor: pointer;
-    pointer-events: none;
+    
     transition: all 0.25s ease;
+}
+.task-box{
+    margin-top: 20px;
+    margin-right: 5px;
+    padding-right: 20px;
+    /* padding: 0 20px 10px 25px; */
+}
+.task-box .task{
+    width: 100%;
+    list-style-type:none;
+    font-size: 17px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid #999;
+    padding-bottom: 10px;
+    padding: 0 10px 20px 25px;
+    margin-bottom: 18px;
+    /* padding-top: 16px; */
+}
+/* .task p{
+    position: relative;
+    left: 17px;
+    bottom: 18px;
+} */
+.task-box .task:last-child{
+    margin-bottom: 0;
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+.task label{
+    display: flex;
+}
+.task label input{
+    margin-right: 12px;
+}
+.settings{
+    cursor: pointer;
+}
+.settings .task-menu{
+    position: absolute;
+    box-shadow: 0 0 6px rgba(0,0,0,0.15);
+    padding: 5px 0;
+    background-color: var(--wrapper-color);
+    border-radius: 5px;
+}
+.task-menu li{
+    height: 25px;
+    font-size: 16px;
+    padding: 17px;
+    margin-bottom: 2px;
+    justify-content: flex-start;
+    transition: all 0.2s ease;
+}
+.task-menu li:last-child{
+    margin-bottom: 0;
+}
+
+.task-menu li:hover{
+    background-color: #f5f5f5;
+}
+.task-menu li i{
+    padding-right: 8px;
 }
