@@ -120,13 +120,24 @@ body{
 }
 .settings{
     cursor: pointer;
+    position: relative;
+    
 }
 .settings .task-menu{
+    transform: scale(0);
     position: absolute;
     box-shadow: 0 0 6px rgba(0,0,0,0.15);
+    right: -5px;
+    bottom: -60px;
+    z-index: 2;
     padding: 5px 0;
     background-color: var(--wrapper-color);
     border-radius: 5px;
+    transition:transform 0.2s ease;
+    transform-origin: top right;
+}
+.settings:hover .task-menu{
+    transform: scale(1);
 }
 .task-menu li{
     height: 25px;
