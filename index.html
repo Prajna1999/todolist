@@ -5,10 +5,68 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/animations.min.css" integrity="sha512-GKHaATMc7acW6/GDGVyBhKV3rST+5rMjokVip0uTikmZHhdqFWC7fGBaq6+lf+DOS5BIO8eK6NcyBYUBCHUBXA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css" integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Todo List</title>
 </head>
 <body>
+    <div class="wrapper">
+        <div class="task-input">
+            <i class='bx bx-align-left'></i>
+            <input type="text"  id="text-input" placeholder="Add a new task...">
+        </div>
 
+        <div class="controls">
+            <div class="filters">
+                <span id="all">All</span>
+                <span id="pending">Pending</span>
+                <span id="completed">Completed</span>
+            </div>
+            <button class="clear-btn">Clear All</button>
+        </div>
+        <ul class="task-box">
+            <li class="task">
+                <label for="1">
+                    <input type="checkbox" id="1">
+                    <p>Renew Gym Membership</p>
+                </label>
+                <div class="settings">
+                    <i class='bx bx-dots-horizontal-rounded'></i>
+                </div>
+            </li>
+            <!-- Task-2 -->
+            <li class="task">
+                <label for="1">
+                    <input type="checkbox" id="1">
+                    <p>Bring Vegetables</p>
+                </label>
+                <div class="settings">
+                    <i class='bx bx-dots-horizontal-rounded'></i>
+                </div>
+            </li>
+            <!-- Task-3 -->
+            <li class="task">
+                <label for="1">
+                    <input type="checkbox" id="1">
+                    <p>Write docs</p>
+                </label>
+                <div class="settings">
+                    <i class='bx bx-dots-horizontal-rounded'></i>
+                </div>
+            </li>
+            <!-- Task-4 -->
+            <li class="task">
+                <label for="1">
+                    <input type="checkbox" id="1">
+                    <p>Cleaning</p>
+                </label>
+                <div class="settings">
+                    <i class='bx bx-dots-horizontal-rounded'></i>
+                </div>
+            </li>
+
+        </ul>
+    </div>
 
 
     <script src="./script.js"></script>
