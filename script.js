@@ -12,7 +12,7 @@ function showTodo(){
             li+=`<li class="task">
     
                 <label for="${id}">
-                    <input type="checkbox" id="${id}">
+                    <input onclick="updateStatus(this)" type="checkbox" id="${id}">
                     <p>${todo.name}</p>
                 </label>
     
@@ -32,7 +32,15 @@ function showTodo(){
     taskBox.innerHTML=li;
     
 }
-
+function updateStatus(selectedTask){
+    // grabing the paragraph.
+    let taskName=selectedTask.parentElement.lastElementChild;
+    if(selectedTask.checked){
+        taskName.classList.add("checked");
+    }else{
+        taskName.classList.remove("checked");
+    }
+}
 
 // add an event listener.
 
