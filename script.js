@@ -1,14 +1,38 @@
 const todoInput=document.querySelector(".task-input input");
-
+const taskBox=document.querySelector(".task-box");
 let todos= JSON.parse( localStorage.getItem("todoList")) ;
 
 // showTodo function
 
 function showTodo(){
-    todos.forEach((todo, id)=>{
-        console.log(todo, id)
+    let li="";
+    if(todos){
+        todos.forEach((todo, id)=>{
+            // console.log(todo, id)
+            li+=`<li class="task">
+    
+                <label for="${id}">
+                    <input type="checkbox" id="${id}">
+                    <p>${todo.name}</p>
+                </label>
+    
+                <div class="settings">
+                    <i class='bx bx-dots-horizontal-rounded'></i>
+                    <ul class="task-menu">
+                        <li><i class='bx bx-edit-alt'></i>Edit</li>
+                        <li><i class='bx bx-trash' ></i>Delete</li>
+                    </ul>
+                </div>
+                
+            </li>`
     })
+  
+        
+    }
+    taskBox.innerHTML=li;
+    
 }
+
 
 // add an event listener.
 
