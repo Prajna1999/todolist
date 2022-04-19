@@ -10,7 +10,7 @@ todoInput.addEventListener("keyup", (e)=>{
          
         if(!todos){
             todos=[];
-        }
+        }   
             let taskInfo={name: userTask, status:"pending"};
             todos.push(taskInfo);
             localStorage.setItem("todoList",JSON.stringify(todos) );
