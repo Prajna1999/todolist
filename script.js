@@ -21,11 +21,11 @@ function showTodo(){
     
                 <label for="${id}">
                     <input onclick="updateStatus(this)" type="checkbox" id="${id}" ${isCompleted}>
-                    <p>${todo.name}</p>
+                    <p class="${isCompleted}">${todo.name}</p>
                 </label>
     
                 <div class="settings">
-                    <i class='bx bx-dots-horizontal-rounded'></i>
+                    <i onclick="showMenu(this)" class='bx bx-dots-horizontal-rounded'></i>
                     <ul class="task-menu">
                         <li><i class='bx bx-edit-alt'></i>Edit</li>
                         <li><i class='bx bx-trash' ></i>Delete</li>
@@ -42,6 +42,18 @@ function showTodo(){
     
 }
 showTodo();
+function showMenu(selectedTask){
+    let taskMenu=selectedTask.parentElement.lastElementChild;
+    taskMenu.classList.add("show");
+
+    // if click anywhere else the menu will be closed.
+    document.addEventListener("click", (e)=>{
+        if(e.target.tagName!=="I" || e.target!==selectedTask){
+            taskMenu.classList.remove("show");
+        }
+    })
+}
+
 function updateStatus(selectedTask){
     // grabing the paragraph.
     let taskName=selectedTask.parentElement.lastElementChild;
