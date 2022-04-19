@@ -1,18 +1,26 @@
 const todoInput=document.querySelector(".task-input input");
 const taskBox=document.querySelector(".task-box");
-let todos= JSON.parse( localStorage.getItem("todoList")) ;
+let todos= JSON.parse(localStorage.getItem("todoList")) ;
 
 // showTodo function
 
 function showTodo(){
     let li="";
+    let isCompleted;
+   
     if(todos){
+     
         todos.forEach((todo, id)=>{
+            if(todo.status==="completed"){
+                isCompleted="checked"
+            }else{
+                isCompleted="";
+            }
             // console.log(todo, id)
             li+=`<li class="task">
     
                 <label for="${id}">
-                    <input onclick="updateStatus(this)" type="checkbox" id="${id}">
+                    <input onclick="updateStatus(this)" type="checkbox" id="${id}" ${isCompleted}>
                     <p>${todo.name}</p>
                 </label>
     
@@ -31,15 +39,20 @@ function showTodo(){
     }
     taskBox.innerHTML=li;
     
+    
 }
+showTodo();
 function updateStatus(selectedTask){
     // grabing the paragraph.
     let taskName=selectedTask.parentElement.lastElementChild;
     if(selectedTask.checked){
         taskName.classList.add("checked");
+        todos[selectedTask.id].status="completed";
     }else{
         taskName.classList.remove("checked");
+        todos[selectedTask.id].status="pending";
     }
+    localStorage.setItem("todoList", JSON.stringify(todos));
 }
 
 // add an event listener.
