@@ -68,6 +68,9 @@ body{
     
 }
 
+.filters span.active{
+    color: var(--primary-color);
+}
 .filters span:first-of-type{
     margin-left: 0;
 }

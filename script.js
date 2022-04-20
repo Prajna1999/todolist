@@ -10,7 +10,9 @@ let isTaskEdited=false;
 // add event listeners to the filters nodelist.
 filters.forEach(btn=>{
     btn.addEventListener("click", (e)=>{
-        console.log(filters);
+        
+        document.querySelector("span.active").classList.remove("active");
+        btn.classList.add("active");
     })
 })
 // showTodo function
