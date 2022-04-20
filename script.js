@@ -2,6 +2,8 @@ const todoInput=document.querySelector(".task-input input");
 const taskBox=document.querySelector(".task-box");
 let todos= JSON.parse(localStorage.getItem("todoList")) ;
 
+let editId;
+let isTaskEdited=false;
 // showTodo function
 
 function showTodo(){
@@ -27,8 +29,8 @@ function showTodo(){
                 <div class="settings">
                     <i onclick="showMenu(this)" class='bx bx-dots-horizontal-rounded'></i>
                     <ul class="task-menu">
-                        <li><i class='bx bx-edit-alt'></i>Edit</li>
-                        <li onclick="deleteTask()"><i class='bx bx-trash' ></i>Delete</li>
+                        <li onclick="editTask(${id}, '${todo.name}')"><i class='bx bx-edit-alt'></i>Edit</li>
+                        <li onclick="deleteTask(${id})"><i class='bx bx-trash' ></i>Delete</li>
                     </ul>
                 </div>
                 
@@ -61,6 +63,11 @@ function deleteTask(deleteTaskId){
     showTodo();
 }
 
+function editTask(taskId, taskName){
+    editId=taskId;
+    isTaskEdited=true;
+    todoInput.value=taskName;
+}
 function updateStatus(selectedTask){
     // grabing the paragraph.
     let taskName=selectedTask.parentElement.lastElementChild;
@@ -78,17 +85,27 @@ function updateStatus(selectedTask){
 
 todoInput.addEventListener("keyup", (e)=>{
     let userTask=todoInput.value.trim();
+    // save to the localstorage and show the item in the UI
     if(e.key==="Enter" && userTask){
-        // save to the localstorage.
-        
-         
-        if(!todos){
-            todos=[];
-        }   
+        if(!isTaskEdited){ //if istaskEdited isn't true
+            if(!todos){
+                todos=[];
+
+            }
             let taskInfo={name: userTask, status:"pending"};
             todos.push(taskInfo);
-            localStorage.setItem("todoList",JSON.stringify(todos) );
+
+        }else{
+            isTaskEdited=false;
+            todos[editId].name=userTask;
+
+        }
+        
+         
+          
             todoInput.value="";
+            localStorage.setItem("todoList",JSON.stringify(todos) );
+           
             showTodo();
         
     }
