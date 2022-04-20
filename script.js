@@ -1,23 +1,26 @@
 const todoInput=document.querySelector(".task-input input");
 const taskBox=document.querySelector(".task-box");
 const filters=document.querySelectorAll(".filters span");
+const clearAllBtn=document.querySelector(".clear-btn");
 let todos= JSON.parse(localStorage.getItem("todoList")) ;
 
 
 let editId;
 let isTaskEdited=false;
 
-// add event listeners to the filters nodelist.
+// add event listeners to each element of  the filters nodelist.
 filters.forEach(btn=>{
     btn.addEventListener("click", (e)=>{
         
         document.querySelector("span.active").classList.remove("active");
         btn.classList.add("active");
+        showTodo(btn.id);
     })
 })
 // showTodo function
 
-function showTodo(){
+
+function showTodo(filter){
     let li="";
     let isCompleted;
    
@@ -29,8 +32,9 @@ function showTodo(){
             }else{
                 isCompleted="";
             }
-            // console.log(todo, id)
-            li+=`<li class="task">
+            if(filter===todo.status || filter==="all"){
+                console.log("works");
+                li+=`<li class="task">
     
                 <label for="${id}">
                     <input onclick="updateStatus(this)" type="checkbox" id="${id}" ${isCompleted}>
@@ -46,15 +50,19 @@ function showTodo(){
                 </div>
                 
             </li>`
-    })
+    }
+            })
+            // console.log(todo, id)
+         
   
         
     }
-    taskBox.innerHTML=li;
+    taskBox.innerHTML=li ||`<li class="task">No Task here</li>`;
     
     
 }
-showTodo();
+showTodo("all"); //important that it stays on the UI even after refreshing.
+
 function showMenu(selectedTask){
     let taskMenu=selectedTask.parentElement.lastElementChild;
     taskMenu.classList.add("show");
@@ -71,7 +79,7 @@ function deleteTask(deleteTaskId){
 // remove the task from the local storage array.
     todos.splice(deleteTaskId, 1);
     localStorage.setItem("todoList",JSON.stringify(todos));
-    showTodo();
+    showTodo("all");
 }
 
 function editTask(taskId, taskName){
@@ -117,8 +125,15 @@ todoInput.addEventListener("keyup", (e)=>{
             todoInput.value="";
             localStorage.setItem("todoList",JSON.stringify(todos) );
            
-            showTodo();
+            showTodo("all");
         
     }
 
+})
+
+// clear button.
+clearAllBtn.addEventListener("click", ()=>{
+    todos.splice(0, todos.length);
+    localStorage.setItem("todoList", JSON.stringify(todos));
+    showTodo("all");
 })
