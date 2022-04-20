@@ -1,9 +1,18 @@
 const todoInput=document.querySelector(".task-input input");
 const taskBox=document.querySelector(".task-box");
+const filters=document.querySelectorAll(".filters span");
 let todos= JSON.parse(localStorage.getItem("todoList")) ;
+
 
 let editId;
 let isTaskEdited=false;
+
+// add event listeners to the filters nodelist.
+filters.forEach(btn=>{
+    btn.addEventListener("click", (e)=>{
+        console.log(filters);
+    })
+})
 // showTodo function
 
 function showTodo(){
