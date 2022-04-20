@@ -28,7 +28,7 @@ function showTodo(){
                     <i onclick="showMenu(this)" class='bx bx-dots-horizontal-rounded'></i>
                     <ul class="task-menu">
                         <li><i class='bx bx-edit-alt'></i>Edit</li>
-                        <li><i class='bx bx-trash' ></i>Delete</li>
+                        <li onclick="deleteTask()"><i class='bx bx-trash' ></i>Delete</li>
                     </ul>
                 </div>
                 
@@ -52,6 +52,13 @@ function showMenu(selectedTask){
             taskMenu.classList.remove("show");
         }
     })
+}
+
+function deleteTask(deleteTaskId){
+// remove the task from the local storage array.
+    todos.splice(deleteTaskId, 1);
+    localStorage.setItem("todoList",JSON.stringify(todos));
+    showTodo();
 }
 
 function updateStatus(selectedTask){
